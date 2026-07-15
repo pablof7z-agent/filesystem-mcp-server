@@ -4,7 +4,7 @@ import { logger } from "../utils/internal/logger.js";
 import { requestContextService } from "../utils/internal/requestContext.js";
 
 const GIT_HINT =
-  "\n\n---\n💡 Your working tree has uncommitted changes. Run `git_status` to see them, and `git_commit` when you're ready to snapshot your work.";
+  "\n\n---\n💡 Your working tree has uncommitted changes. Run the `git` tool with `{\"args\":[\"status\"]}` to see them, and `{\"args\":[\"commit\",\"-m\",\"your message\"]}` when you're ready to snapshot your work.";
 
 let lastCheck = 0;
 let cachedDirty = false;
