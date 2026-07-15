@@ -1,0 +1,1 @@
+export { registerGitCommitTool } from "./registration.js";

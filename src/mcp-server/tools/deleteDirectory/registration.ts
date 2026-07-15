@@ -8,6 +8,7 @@ import {
   DeleteDirectoryInputSchema,
   deleteDirectoryLogic
 } from './deleteDirectoryLogic.js';
+import { appendGitHint } from '../../gitHint.js';
 
 /**
  * Registers the 'delete_directory' tool with the MCP server.
@@ -55,7 +56,7 @@ export const registerDeleteDirectoryTool = async (server: McpServer): Promise<vo
 
           // Format the successful response
           return {
-            content: [{ type: 'text', text: result.message }],
+            content: [{ type: 'text', text: appendGitHint(result.message) }],
           };
         }
       );

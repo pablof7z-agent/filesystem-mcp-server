@@ -8,6 +8,7 @@ import {
   WriteFileInputSchema,
   writeFileLogic,
 } from './writeFileLogic.js';
+import { appendGitHint } from '../../gitHint.js';
 
 /**
  * Registers the 'write_file' tool with the MCP server.
@@ -46,7 +47,7 @@ export const registerWriteFileTool = async (server: McpServer): Promise<void> =>
 
           // Format the successful response
           return {
-            content: [{ type: 'text', text: result.message }],
+            content: [{ type: 'text', text: appendGitHint(result.message) }],
           };
         }
       );

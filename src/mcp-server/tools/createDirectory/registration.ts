@@ -8,6 +8,7 @@ import {
   CreateDirectoryInputSchema,
   createDirectoryLogic
 } from './createDirectoryLogic.js';
+import { appendGitHint } from '../../gitHint.js';
 
 /**
  * Registers the 'create_directory' tool with the MCP server.
@@ -55,7 +56,7 @@ export const registerCreateDirectoryTool = async (server: McpServer): Promise<vo
 
           // Format the successful response
           return {
-            content: [{ type: 'text', text: result.message }],
+            content: [{ type: 'text', text: appendGitHint(result.message) }],
           };
         }
       );

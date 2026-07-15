@@ -8,6 +8,7 @@ import {
   MovePathInputSchema,
   movePathLogic
 } from './movePathLogic.js';
+import { appendGitHint } from '../../gitHint.js';
 
 /**
  * Registers the 'move_path' tool with the MCP server.
@@ -55,7 +56,7 @@ export const registerMovePathTool = async (server: McpServer): Promise<void> => 
 
           // Format the successful response
           return {
-            content: [{ type: 'text', text: result.message }],
+            content: [{ type: 'text', text: appendGitHint(result.message) }],
           };
         }
       );

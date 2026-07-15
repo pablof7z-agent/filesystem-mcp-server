@@ -1,0 +1,1 @@
+export { registerGitStatusTool } from "./registration.js";

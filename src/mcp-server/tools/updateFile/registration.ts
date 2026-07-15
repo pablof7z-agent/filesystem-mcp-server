@@ -8,6 +8,7 @@ import {
   UpdateFileInputSchema,
   updateFileLogic
 } from './updateFileLogic.js';
+import { appendGitHint } from '../../gitHint.js';
 
 /**
  * Registers the 'update_file' tool with the MCP server.
@@ -65,7 +66,7 @@ export const registerUpdateFileTool = async (server: McpServer): Promise<void> =
 
           // Format the successful response
           return {
-            content: [{ type: 'text', text: result.message }],
+            content: [{ type: 'text', text: appendGitHint(result.message) }],
           };
         }
       );

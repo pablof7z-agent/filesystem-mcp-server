@@ -8,6 +8,7 @@ import {
   DeleteFileInputSchema,
   deleteFileLogic
 } from './deleteFileLogic.js';
+import { appendGitHint } from '../../gitHint.js';
 
 /**
  * Registers the 'delete_file' tool with the MCP server.
@@ -55,7 +56,7 @@ export const registerDeleteFileTool = async (server: McpServer): Promise<void> =
 
           // Format the successful response
           return {
-            content: [{ type: 'text', text: result.message }],
+            content: [{ type: 'text', text: appendGitHint(result.message) }],
           };
         }
       );

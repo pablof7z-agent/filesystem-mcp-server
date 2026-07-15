@@ -8,6 +8,7 @@ import {
   CopyPathInputSchema,
   copyPathLogic
 } from './copyPathLogic.js';
+import { appendGitHint } from '../../gitHint.js';
 
 /**
  * Registers the 'copy_path' tool with the MCP server.
@@ -55,7 +56,7 @@ export const registerCopyPathTool = async (server: McpServer): Promise<void> => 
 
           // Format the successful response
           return {
-            content: [{ type: 'text', text: result.message }],
+            content: [{ type: 'text', text: appendGitHint(result.message) }],
           };
         }
       );
