@@ -13,7 +13,7 @@ export const registerGitTool = async (server: McpServer): Promise<void> => {
     async () => {
       server.tool(
         "git",
-        "Runs an arbitrary git command in the workspace repository. Pass arguments as an array (without the 'git' prefix), e.g. {\"args\":[\"status\",\"--porcelain\"]} or {\"args\":[\"commit\",\"-m\",\"add feature\"]} or {\"args\":[\"log\",\"--oneline\",\"-10\"]}. Dangerous commands (push, reset --hard, clean -fd, filter-branch) are blocked.",
+        "Runs an arbitrary git command in the workspace repository. Pass arguments as an array (without the 'git' prefix), e.g. {\"args\":[\"status\",\"--porcelain\"]} or {\"args\":[\"commit\",\"-m\",\"add feature\"]} or {\"args\":[\"log\",\"--oneline\",\"-10\"]} or {\"args\":[\"push\",\"origin\",\"main\"]}. No restrictions.",
         GitInputSchema.shape,
         async (params, _extra) => {
           const callContext = requestContextService.createRequestContext({ operation: "GitToolExecution", parentId: registrationContext.requestId });

@@ -28,22 +28,10 @@ export const gitLogic = async (
   const cmd = `git ${args.map(a => JSON.stringify(a)).join(" ")}`;
   logger.debug(`gitLogic: running "${cmd}" in "${cwd}"`, context);
 
-  const joined = args.join(" ");
-  for (const danger of DANGEROUS) {
-    if (joined.startsWith(danger) || joined.includes(" " + danger)) {
-      logger.warning(`gitLogic: potentially dangerous command blocked: ${joined}`, { ...context, cmd: joined });
-      throw new McpError(
-        BaseErrorCode.FORBIDDEN,
-        `Command "${joined}" is blocked for safety. Run it manually via SSH if needed.`,
-        { ...context, cwd, cmd: joined },
-      );
-    }
-  }
-
   try {
     const output = execSync(cmd, {
       cwd,
-      timeout: 10000,
+      timeout: 30000,
       encoding: "utf8",
       stdio: ["pipe", "pipe", "pipe"],
     });
@@ -64,7 +52,7 @@ export const gitLogic = async (
     throw new McpError(
       BaseErrorCode.INTERNAL_ERROR,
       `git failed: ${error.message}`,
-      { ...context, cwd, cmd: joined, originalError: error },
+      { ...context, cwd, cmd: args.join(" "), originalError: error },
     );
   }
 };
