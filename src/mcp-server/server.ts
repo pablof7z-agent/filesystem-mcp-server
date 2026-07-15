@@ -28,10 +28,7 @@ import { registerReadFileTool } from './tools/readFile/index.js';
 import { registerSetFilesystemDefaultTool } from './tools/setFilesystemDefault/index.js';
 import { registerUpdateFileTool } from './tools/updateFile/index.js';
 import { registerWriteFileTool } from './tools/writeFile/index.js';
-import { registerGitStatusTool } from './tools/gitStatus/index.js';
-import { registerGitCommitTool } from './tools/gitCommit/index.js';
-import { registerGitLogTool } from './tools/gitLog/index.js';
-import { registerGitDiffTool } from './tools/gitDiff/index.js';
+import { registerGitTool } from './tools/git/index.js';
 import { startHttpTransport } from "./transports/httpTransport.js";
 
 /**
@@ -93,10 +90,7 @@ async function createMcpServerInstance(): Promise<McpServer> {
       registerCreateDirectoryTool(server),
       registerMovePathTool(server),
       registerCopyPathTool(server),
-      registerGitStatusTool(server),
-      registerGitCommitTool(server),
-      registerGitLogTool(server),
-      registerGitDiffTool(server)
+      registerGitTool(server)
     ];
 
     await Promise.all(registrationPromises);

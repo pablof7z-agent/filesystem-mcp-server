@@ -1,1 +1,0 @@
-export { registerGitDiffTool } from "./registration.js";

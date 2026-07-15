@@ -1,1 +1,0 @@
-export { registerGitLogTool } from "./registration.js";
